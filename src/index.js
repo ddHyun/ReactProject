@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { HelmetProvider } from 'react-helmet-async';
+import './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
