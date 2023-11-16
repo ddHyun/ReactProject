@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import colorNames from '../../styles/colors';
 
-const { primary } = colorNames;
+const { info } = colorNames;
 
 const OuterBox = styled.header`
   background: #fff;
@@ -23,18 +23,18 @@ const OuterBox = styled.header`
   .right {
     a {
       display: inline-block;
-      border: 1px solid ${primary};
+      border: 1px solid ${info};
       height: 28px;
       border-radius: 3px;
       line-height: 26px;
       width: 90px;
-      color: ${primary};
+      color: ${info};
       font-weight: 700;
       text-align: center;
       margin-left: 5px;
 
       &.on {
-        background: ${primary};
+        background: ${info};
         color: #fff;
       }
     }

@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
-* { box-sizing: border-box; font-family: 'Nanum Gothic', sans-serif; color: #000;}
+* { box-sizing: border-box; font-family: 'Nanum Gothic', sans-serif; color: #000; outline: none;}
 html { font-size: 13px; }
 body { margin: 0; }
 
