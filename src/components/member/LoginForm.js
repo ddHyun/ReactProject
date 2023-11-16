@@ -1,9 +1,12 @@
-import { InputText } from '../commons/InputStyle';
-import { BigButton } from '../commons/ButtonStyle';
 import { useTranslation } from 'react-i18next';
+import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Link } from 'react-router-dom';
+import { InputText } from '../commons/InputStyle';
+import { BigButton } from '../commons/ButtonStyle';
+import Message from '../commons/Message';
+
 import { FiLock, FiKey, FiUserPlus } from 'react-icons/fi';
 
 const LoginText = styled(InputText)`
@@ -16,22 +19,60 @@ const LoginText = styled(InputText)`
 const FormBox = styled.form`
   width: 300px;
   padding-bottom: 80px;
+
+  .links {
+    border: 1px solid #d5d5d5;
+    border-left: 0;
+    border-right: 0;
+    padding: 10px 0;
+    margin-top: 10px;
+    display: flex;
+
+    a {
+      flex-grow: 1;
+      width: 0;
+      text-align: center;
+
+      svg {
+        vertical-align: middle;
+      }
+    }
+  }
 `;
 
-const LoginForm = () => {
+const LoginForm = ({ onSubmit, errors }) => {
   const { t } = useTranslation();
 
+  errors = errors || {};
+
+  const refEmail = useRef();
+
+  useEffect(() => {
+    refEmail.current.focus();
+  }, [refEmail]);
+
   return (
-    <FormBox>
-      <LoginText type="text" placeholder={t('아이디')} />
-      <LoginText type="password" placeholder={t('비밀번호')} />
+    <FormBox onSubmit={onSubmit}>
+      <LoginText
+        type="text"
+        name="email"
+        placeholder={t('이메일')}
+        ref={refEmail}
+      />
+      {errors.email && errors.email.message && (
+        <Message>{errors.email.message}</Message>
+      )}
+      <LoginText type="password" name="password" placeholder={t('비밀번호')} />
+      {errors.password && errors.password.message && (
+        <Message>{errors.password.message}</Message>
+      )}
       <BigButton type="submit" className="mt5" size="medium">
         {t('로그인')}
       </BigButton>
       <div className="links">
         <Link to="/find_id">
           <FiLock />
-          {t('아이디 찾기')}
+          {t('이메일 찾기')}
         </Link>
         <Link to="/find_pw">
           <FiKey />
@@ -42,8 +83,11 @@ const LoginForm = () => {
           {t('회원가입')}
         </Link>
       </div>
+      {errors.global && errors.global.message && (
+        <Message>{errors.global.message}</Message>
+      )}
     </FormBox>
   );
 };
 
-export default LoginForm;
+export default React.memo(LoginForm);
