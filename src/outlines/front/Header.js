@@ -3,6 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
+import colorNames from '../../styles/colors';
+
+const { primary } = colorNames;
+
 const OuterBox = styled.header`
   background: #fff;
   display: flex;
@@ -14,18 +18,18 @@ const OuterBox = styled.header`
   .right {
     a {
       display: inline-block;
-      border: 1px solid #596b99;
+      border: 1px solid ${primary};
       height: 28px;
       border-radius: 3px;
       line-height: 26px;
       width: 90px;
-      color: #596b99;
+      color: ${primary};
       font-weight: 700;
       text-align: center;
       margin-left: 5px;
 
       &.on {
-        background: #596b99;
+        background: ${primary};
         color: #fff;
       }
     }
