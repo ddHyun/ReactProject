@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import ErrorMessage from '../components/commons/ErrorMessage';
+import ErrorMessage from '../../components/commons/ErrorMessage';
 
 class ErrorPage extends Component {
   state = {
