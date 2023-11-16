@@ -14,5 +14,4 @@ export const BigButton = styled.button`
   border: 0;
   cursor: pointer;
   border-radius: 3px;
-  margin-top: 5px;
 `;
