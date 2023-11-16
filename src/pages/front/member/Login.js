@@ -2,6 +2,7 @@ import LoginContainer from '../../../containers/member/LoginContainer';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { SubTitle } from '../../../components/commons/TitleStyle';
+import styles from '../../../styles/login.module.scss';
 
 const Login = () => {
   const { t } = useTranslation();

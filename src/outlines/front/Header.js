@@ -14,6 +14,11 @@ const OuterBox = styled.header`
   align-items: center;
   height: 80px;
   padding: 0 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 
   .right {
     a {

@@ -14,11 +14,11 @@ export const SubTitle = styled.h2`
   padding: 0;
   text-align: ${({ align }) => align || 'left'};
   color: ${({ color }) => (color ? colorNames.color : '#000')};
-  ${({ borderWidth, color }) =>
-    borderWidth &&
+  ${({ border_width, color }) =>
+    border_width &&
     css`
-      padding-top: 10px;
-      border-bottom: ${borderWidth}px solid ${color ? color : '#000'};
+      padding-bottom: 10px;
+      border-bottom: ${border_width}px solid ${color ? color : '#000'};
     `}
   margin-bottom: 20px;
 `;
