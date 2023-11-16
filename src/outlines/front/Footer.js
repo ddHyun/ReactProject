@@ -1,5 +1,11 @@
+import styled from "styled-components";
+
+const OuterBox = styled.footer`
+
+`;
+
 const Footer = () => {
-  return <h1>FOOTER</h1>;
+  return <OuterBox>FOOTER</OuterBox>;
 };
 
 export default Footer;
