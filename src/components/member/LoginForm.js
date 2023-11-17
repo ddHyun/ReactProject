@@ -2,12 +2,14 @@ import { useTranslation } from 'react-i18next';
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import loadable from '@loadable/component';
 
 import { InputText } from '../commons/InputStyle';
 import { BigButton } from '../commons/ButtonStyle';
-import Message from '../commons/Message';
 
 import { FiLock, FiKey, FiUserPlus } from 'react-icons/fi';
+
+const Message = loadable(() => import('../commons/Message'));
 
 const LoginText = styled(InputText)`
   display: block;
