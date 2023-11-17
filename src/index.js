@@ -9,16 +9,20 @@ import { BrowserRouter } from 'react-router-dom';
 import ErrorPage from './pages/commons/ErrorPage';
 import './i18n';
 
+import { UserProvider } from './modules/User';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <BrowserRouter>
-        <ErrorPage>
-          <App />
-        </ErrorPage>
-      </BrowserRouter>
-    </HelmetProvider>
+    <UserProvider>
+      <HelmetProvider>
+        <BrowserRouter>
+          <ErrorPage>
+            <App />
+          </ErrorPage>
+        </BrowserRouter>
+      </HelmetProvider>
+    </UserProvider>
   </React.StrictMode>,
 );
 
