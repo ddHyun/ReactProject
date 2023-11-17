@@ -1,11 +1,18 @@
-import UserConsumer from '../../modules/User';
 import LoginContainer from '../../containers/member/LoginContainer';
+import UserContext from '../../modules/User';
+import { useContext } from 'react';
 
 const Main = () => {
-  return (
-    <UserConsumer>
-      {({ isLogin }) => (isLogin ? <h1>메인페이지</h1> : <LoginContainer />)}
-    </UserConsumer>
+  //const value = useContext(UserContext);
+  const {
+    state: { isLogin, userInfo },
+    actions: { setIsLogin, setUserInfo },
+  } = useContext(UserContext);
+
+  return isLogin ? (
+    <h1>메인페이지 : {userInfo.userNm}</h1>
+  ) : (
+    <LoginContainer setIsLogin={setIsLogin} setUserInfo={setUserInfo} />
   );
 };
 
