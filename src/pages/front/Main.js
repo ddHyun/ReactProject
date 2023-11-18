@@ -6,7 +6,7 @@ const Main = () => {
   //const value = useContext(UserContext);
   const {
     state: { isLogin, userInfo },
-    actions: { setIsLogin, setUserInfo },
+    action: { setIsLogin, setUserInfo },
   } = useContext(UserContext);
 
   return isLogin ? (
