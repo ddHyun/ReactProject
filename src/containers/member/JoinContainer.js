@@ -14,8 +14,8 @@ const JoinContainer = () => {
       e.preventDefault();
 
       /*
-필수항목
-*/
+      필수항목
+      */
       const requiredFields = {
         email: t('NotBlank_email'),
         password: t('NotBlank_password'),
