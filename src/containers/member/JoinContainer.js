@@ -2,9 +2,13 @@ import JoinForm from '../../components/member/JoinForm';
 import React, { useState, useCallback } from 'react';
 import { produce } from 'immer';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import requestJoin from '../../api/member/join';
 
 const JoinContainer = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({ agree: false });
   const [errors, setErrors] = useState({});
 
@@ -49,9 +53,18 @@ const JoinContainer = () => {
         return;
       }
 
-      //오류가 없다면 회원가입 처리
+      //오류가 없다면 회원가입 처리(Promise()로 내보냈기 때문에 then, catch구조 사용)
+      requestJoin(form)
+        .then(() => {
+          //회원가입 성공시 처리
+          setForm(() => {}); //양식 초기화
+
+          //로그인페이지 이동(replace : history 기록X)
+          navigate('/login', { replace: true });
+        })
+        .catch((err) => setErrors(() => err.response.data.message));
     },
-    [form],
+    [form, t, navigate],
   );
 
   const onChange = useCallback((e) => {

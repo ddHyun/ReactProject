@@ -13,7 +13,7 @@ export default function apiRequest(
     url = process.env.REACT_APP_API_URL + url;
   }
 
-  //요청데티어(data)가 있고 요청메서드가 GET방식 -> 쿼리스트링으로 변환
+  //요청데이터(data)가 있고 요청메서드가 GET방식 -> 쿼리스트링으로 변환 : URLSearchParams 사용
   if (method.toUpperCase() === 'GET' && data) {
     const searchParams = new URLSearchParams(data);
     url += `?${searchParams.toString()}`;
