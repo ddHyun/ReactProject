@@ -19,7 +19,6 @@ export default function apiRequest(
     url += `?${searchParams.toString()}`;
     data = null;
   }
-
   const token = cookies.load('token');
   if (token) {
     headers = headers || {};
@@ -31,6 +30,6 @@ export default function apiRequest(
     url,
     data,
     headers,
-    validationStatus: (state) => state < 500,
+    validateStatus: (state) => state < 500,
   });
 }

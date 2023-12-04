@@ -1,4 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
+import { useContext } from 'react';
+import UserContext from './modules/User';
+
 import Main from './pages/front/Main';
 import Login from './pages/front/member/Login';
 import Join from './pages/front/member/Join';
@@ -6,6 +9,12 @@ import NotFound from './pages/commons/NotFound';
 import FrontLayout from './layouts/front/CommonLayout';
 
 const App = () => {
+  const {
+    action: { updateUserInfo },
+  } = useContext(UserContext);
+
+  updateUserInfo();
+
   return (
     <Routes>
       <Route path="/" element={<FrontLayout />}>
