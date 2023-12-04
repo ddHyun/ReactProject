@@ -1,19 +1,86 @@
-import LoginForm from '../../components/member/LoginForm';
+import React, { useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
+import cookies from 'react-cookies';
+import { useNavigate } from 'react-router-dom';
 
-const LoginContainer = ({ setIsLogin, setUserInfo }) => {
-  const handleClick = () => {
-    setIsLogin(true);
-    setUserInfo({ userNm: '이이름' });
-  };
+import LoginForm from '../../components/member/LoginForm';
+import { requestLogin, getUserInfo } from '../../api/member/login';
+
+const LoginContainer = () => {
+  const [errors, setErrors] = useState({});
+  const [form, setForm] = useState({});
+
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault(); //ajax로 처리하기 위함
+
+      let hasError = false;
+      const _errors = {};
+      setErrors(() => _errors);
+
+      /*필수항목 검증 S */
+      const requiredFields = {
+        email: t('NotBlank_email'),
+        password: t('NotBlank_password'),
+      };
+
+      for (const field in requiredFields) {
+        if (!form[field] || !form[field].trim()) {
+          _errors[field] = requiredFields[field];
+          hasError = true;
+        }
+      }
+      /*필수항목 검증 E */
+
+      if (hasError) {
+        setErrors(() => _errors);
+        return;
+      }
+
+      //로그인 처리
+      requestLogin(form)
+        .then((token) => {
+          //JWT토큰 -> 쿠키에 저장
+          cookies.save('token', token, {
+            path: '/',
+          });
+
+          //양식 초기화
+          setForm(() => {});
+
+          //로그인 상태(isLogin -> true), userInfo에 회원정보 업데이트
+          getUserInfo();
+
+          //페이지 이동
+          navigate('/', { replace: true });
+        })
+        .catch(() => {
+          setErrors(() => ({
+            global: t('Login_fail'),
+          }));
+        });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [form],
+  );
+
+  const onChange = useCallback((e) => {
+    const target = e.currentTarget; //렌더링 시 이벤트객체가 사라지는 오류 발생. 값을 유지하기 위해  대입해서 사용해보자
+    setForm((form) => ({
+      ...form,
+      [target.name]: target.value,
+    }));
+  }, []);
 
   return (
     <>
-      <LoginForm />
-      <button type="button" onClick={handleClick}>
-        로그인상태
-      </button>
+      <LoginForm onChange={onChange} onSubmit={onSubmit} errors={errors} />
     </>
   );
 };
 
-export default LoginContainer;
+//동일props이면 렌더링 제외시키기 : container쪽은 다 React.memo() 사용하자!
+export default React.memo(LoginContainer);
