@@ -62,7 +62,7 @@ const JoinContainer = () => {
           //로그인페이지 이동(replace : history 기록X)
           navigate('/login', { replace: true });
         })
-        .catch((err) => setErrors(() => err.response.data.message));
+        .catch((err) => setErrors(() => err.message));
     },
     [form, t, navigate],
   );

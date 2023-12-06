@@ -5,6 +5,8 @@ import UserContext from './modules/User';
 import Main from './pages/front/Main';
 import Login from './pages/front/member/Login';
 import Join from './pages/front/member/Join';
+import Logout from './pages/front/member/Logout';
+import Mypage from './pages/front/member/Mypage';
 import NotFound from './pages/commons/NotFound';
 import FrontLayout from './layouts/front/CommonLayout';
 
@@ -21,6 +23,8 @@ const App = () => {
         <Route index element={<Main />} />
         <Route path="/join" element={<Join />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
+        <Route path="/mypage" element={<Mypage />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
