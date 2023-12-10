@@ -9,6 +9,7 @@ import Logout from './pages/front/member/Logout';
 import Mypage from './pages/front/member/Mypage';
 import NotFound from './pages/commons/NotFound';
 import FrontLayout from './layouts/front/CommonLayout';
+import AdminLayout from './layouts/admin/CommonLayout';
 
 const App = () => {
   const {
@@ -26,6 +27,12 @@ const App = () => {
         <Route path="/logout" element={<Logout />} />
         <Route path="/mypage" element={<Mypage />} />
       </Route>
+
+      {/**관리자페이지 */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<h1>관리자페이지</h1>} />
+      </Route>
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
