@@ -9,7 +9,7 @@ const CommonLayout = () => {
 
   useEffect(() => {
     update();
-  }, []);
+  }, [update]);
 
   return (
     <>

@@ -47,7 +47,7 @@ const OuterBox = styled.header`
 const Header = () => {
   const { t } = useTranslation();
   const {
-    state: { isLogin },
+    state: { isLogin, isAdmin },
   } = useContext(UserContext);
 
   return (
@@ -70,6 +70,14 @@ const Header = () => {
             >
               {t('마이페이지')}
             </NavLink>
+            {isAdmin && (
+              <NavLink
+                to="/admin"
+                className={({ isActive }) => classNames({ on: isActive })}
+              >
+                {t('사이트관리')}
+              </NavLink>
+            )}
           </>
         ) : (
           <>
