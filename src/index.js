@@ -10,6 +10,7 @@ import ErrorPage from './pages/commons/ErrorPage';
 import './i18n';
 
 import { UserProvider } from './modules/User';
+import { MainClassProvider } from './modules/MainClass';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,9 +18,11 @@ root.render(
     <UserProvider>
       <HelmetProvider>
         <BrowserRouter>
-          <ErrorPage>
-            <App />
-          </ErrorPage>
+          <MainClassProvider>
+            <ErrorPage>
+              <App />
+            </ErrorPage>
+          </MainClassProvider>
         </BrowserRouter>
       </HelmetProvider>
     </UserProvider>

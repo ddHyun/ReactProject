@@ -1,5 +1,5 @@
-import React, { useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import LoginContainer from '../../containers/member/LoginContainer';
 import UserContext from '../../modules/User';
 
 const MemberOnly = ({ children }) => {
@@ -7,12 +7,7 @@ const MemberOnly = ({ children }) => {
     state: { isLogin },
   } = useContext(UserContext);
 
-  const navigate = useNavigate();
-  useEffect(() => {
-    navigate('/login', { replace: true });
-  }, [isLogin, navigate]);
-
-  return children;
+  return isLogin ? children : <LoginContainer />;
 };
 
 export default React.memo(MemberOnly);
